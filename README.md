@@ -27,3 +27,13 @@ Ein einfaches Bankkonto-Backend, entwickelt mit Spring Boot, Spring Data JPA und
 ## Testen
 
 Die Endpunkte können z. B. mit Postman getestet werden.
+
+## Authentifizierung
+
+- Alle Endpunkte außer `POST /auth/registrieren` sind per Basic Auth geschützt
+- `POST /auth/registrieren` legt einen neuen Nutzer an, das Passwort wird mit BCrypt gehasht gespeichert
+- Hinweis: Konten sind aktuell noch nicht an einzelne Nutzer gebunden, jeder eingeloggte Nutzer sieht alle Konten
+
+## Testen
+
+Die Endpunkte können z. B. mit Postman getestet werden. Zuerst über `POST /auth/registrieren` einen Nutzer anlegen (Body: `{"username": "...", "password": "..."}`). Danach bei allen weiteren Anfragen unter **Authorization → Basic Auth** die Zugangsdaten eintragen. Ohne Login antwortet die API mit 401.

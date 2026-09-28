@@ -1,6 +1,5 @@
 package com.ardian.bankkonto_spring;
 
-import com.sun.jdi.connect.IllegalConnectorArgumentsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
