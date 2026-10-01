@@ -1,5 +1,6 @@
 package com.ardian.bankkonto_spring;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,6 +33,7 @@ public class Nutzer {
         this.username = username;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }

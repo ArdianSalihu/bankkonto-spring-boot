@@ -6,14 +6,17 @@ Ein einfaches Bankkonto-Backend, entwickelt mit Spring Boot, Spring Data JPA und
 
 - Spring Boot (REST-Controller, Dependency Injection)
 - Spring Data JPA (automatische Datenbank-Anbindung über Repositories)
+- Spring Security (Basic Auth, BCrypt-Passwort-Hashing)
 - MySQL als relationale Datenbank
+- Datenbank-Beziehungen (@ManyToOne zwischen Konto und Nutzer)
 - Validierung und zentrale Fehlerbehandlung (@ExceptionHandler)
 - REST-Prinzipien (GET, POST, PUT)
 
 ## Endpunkte
 
-- `GET /konto` – Alle Konten anzeigen
-- `POST /konto` – Neues Konto erstellen
+- `POST /auth/registrieren` – Neuen Nutzer registrieren (ohne Login erreichbar)
+- `GET /konto` – Eigene Konten anzeigen
+- `POST /konto` – Neues Konto erstellen (wird automatisch dem eingeloggten Nutzer zugeordnet)
 - `PUT /konto/{id}/einzahlen` – Geld einzahlen
 - `PUT /konto/{id}/abheben` – Geld abheben (mit Validierung gegen Überziehung)
 
@@ -24,15 +27,13 @@ Ein einfaches Bankkonto-Backend, entwickelt mit Spring Boot, Spring Data JPA und
 3. Eigenes MySQL-Passwort in `application.properties` eintragen
 4. Projekt über `BankkontoSpringApplication` starten
 
-## Testen
-
-Die Endpunkte können z. B. mit Postman getestet werden.
-
 ## Authentifizierung
 
 - Alle Endpunkte außer `POST /auth/registrieren` sind per Basic Auth geschützt
 - `POST /auth/registrieren` legt einen neuen Nutzer an, das Passwort wird mit BCrypt gehasht gespeichert
-- Hinweis: Konten sind aktuell noch nicht an einzelne Nutzer gebunden, jeder eingeloggte Nutzer sieht alle Konten
+- Jedes Konto gehört einem bestimmten Nutzer, nur der Besitzer kann auf sein eigenes Konto zugreifen
+- Beim Zugriff auf ein fremdes Konto antwortet die API mit 403 Forbidden
+- Passwörter werden nie in API-Antworten zurückgegeben
 
 ## Testen
 
