@@ -21,7 +21,6 @@ public class KontoController {
     private Nutzer getEingeloggterNutzer(Authentication authentication) {
         return nutzerRepository.findByUsername(authentication.getName());
     }
-
     // Findet den eingeloggten Nutzer und gibt nur dessen eigene Konten zurück
     @GetMapping // Reagiert auf GET-Anfragen zu /konto (Daten abrufen)
     public List<Konto> alleKontenAnzeigen(Authentication authentication) {
